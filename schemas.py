@@ -1,4 +1,5 @@
 from pydantic import BaseModel, Field
+from datetime import datetime
 
 from enum import Enum
 
@@ -17,3 +18,13 @@ class User(BaseModel):
     occupation: Occupation
     yearly_income: int = Field(gt=100000, lt=100000000)
     phone : str
+
+class Status(str, Enum):
+    APPROVED= "APPROVED"
+    REJECTED= "REJECTED"
+    PENDING = "PENDING"    
+
+class Loans(BaseModel):
+    required_amt: int
+    user_id: str
+    status: Status = Field(default=Status.PENDING)
