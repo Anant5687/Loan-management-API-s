@@ -1,4 +1,6 @@
 from pydantic import BaseModel, Field
+
+from typing import Optional
 from datetime import datetime
 
 from enum import Enum
@@ -28,3 +30,8 @@ class Loans(BaseModel):
     required_amt: int
     user_id: str
     status: Status = Field(default=Status.PENDING)
+
+
+class UpdateLoan(BaseModel):
+    status: Status
+    comment: Optional[str] = None
