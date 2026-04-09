@@ -13,3 +13,12 @@ def normalize_phone(number: str):
     if "+91-" in number:
         return number.replace("+91-", "").replace(" ", "")
     return number.replace(" ", "")
+
+def load_loans():
+    with open('./loans.json' , "r") as f:
+        loans = json.load(f)
+        return loans
+    
+def save_loans(data):
+    with open('./loans.json', "w") as f:
+        json.dump(data, f)
